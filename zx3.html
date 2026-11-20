@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Happy Birthday!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Enable smooth GPU compositing for animated elements only */
+    .card,
+    .back-home,
+    .cake,
+    .confetti {
+      will-change: transform;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+
+    html, body {
+      min-height: 100%;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
+      font-family: 'Segoe UI', 'Georgia', serif;
+      padding: 16px;
+      padding-top: max(16px, env(safe-area-inset-top));
+      padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+
+    .card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 24px;
+      padding: 56px 40px 44px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(194, 24, 91, 0.25);
+      overflow: hidden;
+      animation: floatIn 0.7s ease-out;
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Confetti dots decoration */
+    .confetti {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: twinkle 2.5s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    .confetti:nth-child(1) { top: 18px; left: 25px; background: #f06292; animation-delay: 0s; }
+    .confetti:nth-child(2) { top: 40px; right: 30px; background: #ba68c8; animation-delay: 0.4s; }
+    .confetti:nth-child(3) { bottom: 30px; left: 40px; background: #ffb74d; animation-delay: 0.8s; }
+    .confetti:nth-child(4) { bottom: 50px; right: 45px; background: #4dd0e1; animation-delay: 1.2s; }
+    .confetti:nth-child(5) { top: 50%; left: 12px; background: #f06292; animation-delay: 1.6s; }
+    .confetti:nth-child(6) { top: 60%; right: 15px; background: #ba68c8; animation-delay: 2s; }
+
+    @keyframes twinkle {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.4); opacity: 1; }
+    }
+
+    h1 {
+      font-size: clamp(1.75rem, 6vw, 2.4rem);
+      color: #c2185b;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .emoji-row {
+      font-size: clamp(1.6rem, 5.5vw, 2rem);
+      margin-bottom: 18px;
+      letter-spacing: 6px;
+    }
+
+    .message {
+      font-size: clamp(1rem, 3.6vw, 1.15rem);
+      color: #5d4037;
+      line-height: 1.75;
+      margin-bottom: 26px;
+    }
+
+    .divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(to right, #f8bbd0, #c2185b, #f8bbd0);
+      border-radius: 3px;
+      margin: 0 auto 26px;
+    }
+
+    .signature {
+      font-size: clamp(1.1rem, 4vw, 1.3rem);
+      color: #ad1457;
+      font-style: italic;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* Cake */
+    .cake {
+      font-size: 2.8rem;
+      margin-bottom: 14px;
+      display: inline-block;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    /* Glassy button – vintage + aquarium gradient background */
+    .back-home {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      min-height: 40px;
+      padding: 9px 18px;
+      font-size: 0.88rem;
+      font-family: 'Segoe UI', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      border-radius: 30px;
+      touch-action: manipulation;
+      cursor: pointer;
+
+      /* Vintage + aquarium light gradient background (semi-transparent) */
+      background-image: linear-gradient(
+        135deg,
+        rgba(210, 180, 140, 0.35) 0%,
+        rgba(255, 215, 120, 0.30) 18%,
+        rgba(120, 220, 232, 0.32) 38%,
+        rgba(80, 180, 220, 0.30) 55%,
+        rgba(160, 120, 200, 0.30) 75%,
+        rgba(60, 40, 80, 0.32) 100%
+      );
+
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow:
+        0 4px 22px rgba(142, 68, 173, 0.25),
+        0 2px 10px rgba(120, 220, 232, 0.25),
+        inset 0 1px 1px rgba(255, 255, 255, 0.95),
+        inset 0 -1px 2px rgba(142, 68, 173, 0.18);
+
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* Gradient text on inner span */
+    .back-home .label {
+      background-image: linear-gradient(
+        135deg,
+        #8e44ad 0%,
+        #c39bd3 20%,
+        #f1c40f 45%,
+        #b7950b 65%,
+        #1a1a1a 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    /* Hover only on devices that support it (avoids sticky mobile hover) */
+    @media (hover: hover) {
+      .back-home:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.85);
+        background-image: linear-gradient(
+          135deg,
+          rgba(210, 180, 140, 0.5) 0%,
+          rgba(255, 215, 120, 0.45) 18%,
+          rgba(120, 220, 232, 0.5) 38%,
+          rgba(80, 180, 220, 0.48) 55%,
+          rgba(160, 120, 200, 0.48) 75%,
+          rgba(60, 40, 80, 0.5) 100%
+        );
+        box-shadow:
+          0 8px 28px rgba(142, 68, 173, 0.35),
+          0 3px 16px rgba(120, 220, 232, 0.4),
+          inset 0 1px 2px rgba(255, 255, 255, 1),
+          inset 0 -1px 3px rgba(142, 68, 173, 0.25);
+      }
+    }
+
+    .back-home:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow:
+        0 3px 14px rgba(142, 68, 173, 0.3),
+        inset 0 1px 3px rgba(255, 255, 255, 0.85);
+    }
+
+    /* ---------- MOBILE STACKED LAYOUT ---------- */
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+      }
+
+      .card {
+        padding: 70px 22px 36px; /* extra top padding to fit stacked button */
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Button becomes a full-width stacked block at the top */
+      .back-home {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        right: 12px;          /* stretch across */
+        width: auto;
+        min-height: 44px;     /* proper touch target */
+        padding: 11px 16px;
+        font-size: 0.9rem;
+        border-radius: 16px;
+      }
+
+      .back-home .label {
+        width: 100%;
+        text-align: center;
+      }
+
+      .cake { font-size: 2.4rem; }
+      .emoji-row { letter-spacing: 4px; }
+      .message { line-height: 1.7; }
+    }
+
+    /* Extra small phones */
+    @media (max-width: 360px) {
+      .card { padding: 66px 16px 30px; }
+      .back-home { font-size: 0.82rem; min-height: 40px; }
+      h1 { letter-spacing: 0; }
+    }
+
+    /* Reduce motion for accessibility & performance */
+    @media (prefers-reduced-motion: reduce) {
+      .card, .cake, .confetti, .back-home {
+        animation: none !important;
+        transition: none !important;
+        will-change: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <span class="confetti"></span>
+    <span class="confetti"></span>
+    <span class="confetti"></span>
+    <span class="confetti"></span>
+    <span class="confetti"></span>
+    <span class="confetti"></span>
+
+    <!-- Glassy back-to-home button -->
+    <a href="https://frazi-f.github.io/yabb/" class="back-home" aria-label="Back to Home">
+      <span class="label">← Home</span>
+    </a>
+
+    <div class="cake">🎂</div>
+    <h1>Happy Birthday!</h1>
+    <div class="emoji-row">🎈🎀🍰</div>
+
+    <p class="message">
+      Hope your day is as sweet as you are!<br>
+      Wishing you a year full of smiles, sunshine,<br>
+      and all your favorite things.
+    </p>
+
+    <div class="divider"></div>
+    <p class="signature">HBD<i> bestie</i>😺😺</p>
+  </div>
+
+</body>
+</html>
